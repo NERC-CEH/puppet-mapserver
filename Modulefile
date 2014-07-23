@@ -1,4 +1,4 @@
-name 'nerc-ceh-mapserver'
+name 'nercceh-mapserver'
 version '1.0.0'
 source 'git://github.com/NERC-CEH/puppet-mapserver.git'
 author 'Christopher Johnson'
