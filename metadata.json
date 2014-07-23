@@ -1,0 +1,17 @@
+{
+  "name": "nercceh-mapserver",
+  "version": "1.0.0",
+  "author": "Christopher Johnson",
+  "license": "GPLv2",
+  "summary": "Puppet module for managing mapserver",
+  "source": "git://github.com/NERC-CEH/puppet-mapserver.git",
+  "tags": ["MapServer", "UbuntuGis", "gis"],
+  "operatingsystem_support": [{
+    "operatingsystem": "Ubuntu",
+    "operatingsystemrelease": [ "12.04", "14.04" ]
+  }],
+  "dependencies": [
+    { "name": "puppetlabs/apt", "version_requirement": ">= 1.4.0" },
+    { "name": "puppetlabs/apache", "version_requirement": ">= 1.1.0" }
+  ]
+}
