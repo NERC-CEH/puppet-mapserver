@@ -8,7 +8,7 @@ This is the mapserver module. It installs the mapserver and creates an apache vh
 
 [MapServer](mapserver.org) is an open source web mapping application. It can be used to publish WMS' from various spatial data formats
 
-This module will install the mapserver cgi application and set up an apache vhost to call mapserver from. MapServer is available from the [ubuntu gis ppa](launchpad.net/~ubuntugis) therefore this module will manage the apt::source for obtaining this software.
+This module will install the mapserver cgi application and set up an apache vhost to call mapserver from. MapServer is available from the ubuntu universe and the [ubuntu gis ppa](launchpad.net/~ubuntugis) therefore this module will manage the apt::source for ubuntugis if required. By default, the ubuntugis ppa is not set up. See usage on how to enable this
 
 You can choose between installing the mapserver application from the stable or testing repository. If neither of this are suitable you are free to specify your own source.
 
@@ -24,15 +24,16 @@ This module will also install and manage the gdal suite of tools.
 
 ## Usage
 
-Install MapServer and gdal from the stable ubuntugis ppa and create an apache vhost on port 9000
+Install MapServer and gdal and create an apache vhost on port 9000
 
     include mapserver
 
-Install mapserver from the unstable ppa on port 5000
+Install mapserver from the ubuntugis-unstable ppa on port 5000
 
     class { 'mapserver' :
-      source => 'unstable',
-      port   => 5000,
+      manage_sources => true,
+      source         => 'unstable',
+      port           => 5000,
     }
 
 ## Dependencies
