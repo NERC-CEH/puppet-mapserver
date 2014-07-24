@@ -34,41 +34,34 @@ describe 'mapserver', :type => :class do
     it { should_not contain_apache__vhost('mapserver') }
   end
 
-  describe 'when sources are managed' do
-    let(:params) { { :manage_sources => true } }
+  describe 'when stable ubuntugis is managed' do
+    let(:params) { { 
+      :ubuntugis => 'stable' 
+    } }
 
-    it { should contain_class('apt') }
     it { should contain_apt__source('ubuntugis-ppa').with(
+      :location => 'http://ppa.launchpad.net/ubuntugis/ppa/ubuntu',
       :repos      => 'main',
       :key        => '314DF160',
       :key_server => 'keyserver.ubuntu.com'
     )}
   end
 
-  describe 'when stable sources are managed' do
+  describe 'when unstable ubuntugis is managed' do
     let(:params) { { 
-      :manage_sources => true,
-      :source => 'stable' 
+      :ubuntugis => 'unstable' 
     } }
 
     it { should contain_apt__source('ubuntugis-ppa').with(
-      :location => 'http://ppa.launchpad.net/ubuntugis/ppa/ubuntu'
+      :location => 'http://ppa.launchpad.net/ubuntugis/ubuntugis-unstable/ubuntu',
+      :repos      => 'main',
+      :key        => '314DF160',
+      :key_server => 'keyserver.ubuntu.com'
     )}
   end
 
-  describe 'when unstable sources are managed' do
-    let(:params) { { 
-      :manage_sources => true,
-      :source => 'unstable' 
-    } }
-
-    it { should contain_apt__source('ubuntugis-ppa').with(
-      :location => 'http://ppa.launchpad.net/ubuntugis/ubuntugis-unstable/ubuntu'
-    )}
-  end
-
-  describe 'when sources are not managed' do
-    let(:params) { { :manage_sources => false } }
+  describe 'when ubuntugis is not managed' do
+    let(:params) { { :ubuntugis => false } }
 
     it { should_not contain_class('apt') }
     it { should_not contain_apt__source('ubuntugis-ppa') }

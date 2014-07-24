@@ -7,11 +7,11 @@
 # [*gdal_version*] The version of the gdal suite to install
 # [*cgi_mapserver_version*] The version of the cig mapserver application to install
 # [*mapserver_bin_version*] The version of the mapserver bin to install
-# [*manage_sources*] if the apt::source for ubuntugis should be managed
 # [*manage_vhost*] if an apache vhost should be created hosting the cgi application
-# [*source*] The ubuntugis ppa source. Either stable, unstable or a custom location.
-#   when custom sources are used, it is expected that the key and key_server match that of
-#   the ubuntugis ppa. If this is not acceptable, you should manage the ppa yourself
+# [*ubuntugis*] The ubuntugis ppa source. Either undef, stable, unstable or a custom 
+#   location. When custom sources are used, it is expected that the key and key_server
+#   match that of the ubuntugis ppa. If this is not acceptable, you should manage the 
+#   ppa yourself. An undef value, defaults to not managing ubuntugis
 #
 # === Authors
 # 
@@ -22,9 +22,8 @@ class mapserver (
   $gdal_version          = present,
   $cgi_mapserver_version = present,
   $mapserver_bin_version = present,
-  $manage_sources        = false,
   $manage_vhost          = true,
-  $source                = stable
+  $ubuntugis             = undef
 ) {
   if $manage_vhost {
     include apache
@@ -39,12 +38,12 @@ class mapserver (
     }
   }
 
-  if $manage_sources {
+  if $ubuntugis {
     include apt
-    $ppa_location = $source ? {
+    $ppa_location = $ubuntugis ? {
       'stable'   => 'http://ppa.launchpad.net/ubuntugis/ppa/ubuntu',
       'unstable' => 'http://ppa.launchpad.net/ubuntugis/ubuntugis-unstable/ubuntu',
-      default    => $source
+      default    => $ubuntugis
     }
 
     ::apt::source { 'ubuntugis-ppa' :
