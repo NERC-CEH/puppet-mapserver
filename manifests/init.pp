@@ -33,7 +33,10 @@ class mapserver (
       servername      => $fqdn,
       port            => $port,
       docroot         => '/var/www/mapserver',
-      scriptalias     => '/usr/lib/cgi-bin/',
+      scriptaliases   => [{
+        alias => '/cgi-bin',
+        path  => '/usr/lib/cgi-bin/',
+      }],
       custom_fragment => 'SetHandler fcgid-script',
     }
   }
