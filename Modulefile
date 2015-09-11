@@ -1,8 +1,8 @@
-name 'nercceh-mapserver'
-version '1.0.0'
+name 'ceh-mapserver'
+version '1.1.0'
 source 'git://github.com/NERC-CEH/puppet-mapserver.git'
-author 'Christopher Johnson'
-license 'GPLv2'
+author 'Centre for Ecology & Hydrology'
+license 'GPL-2.0'
 summary 'Puppet module for managing MapServer'
 description 'Module for MapServer installation and apache setup'
 
