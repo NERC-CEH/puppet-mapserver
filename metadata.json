@@ -1,10 +1,12 @@
 {
-  "name": "nercceh-mapserver",
-  "version": "1.0.0",
-  "author": "Christopher Johnson",
-  "license": "GPLv2",
+  "name": "ceh-mapserver",
+  "version": "1.1.0",
+  "author": "Centre for Ecology & Hydrology",
+  "license": "GPL-2.0",
   "summary": "Puppet module for managing mapserver",
   "source": "git://github.com/NERC-CEH/puppet-mapserver.git",
+  "project_page": "https://forge.puppetlabs.com/ceh/mapserver",
+  "issues_url": "https://github.com/NERC-CEH/puppet-mapserver/issues",
   "tags": ["MapServer", "UbuntuGis", "gis"],
   "operatingsystem_support": [{
     "operatingsystem": "Ubuntu",
