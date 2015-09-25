@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'mapserver', :type => :define do   
+describe 'mapserver::vhost', :type => :define do   
   let(:facts) { { 
     :osfamily               => 'Debian',
     :operatingsystemrelease => '6',

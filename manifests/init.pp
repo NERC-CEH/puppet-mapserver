@@ -46,10 +46,8 @@ class mapserver (
     ::apt::source { 'ubuntugis-ppa' :
       location   => $ppa_location,
       repos      => 'main',
-      key        => {
-        id     => '6B827C12C2D425E227EDCA75089EBE08314DF160',
-        server => 'keyserver.ubuntu.com',
-      },
+      key        => '314DF160',
+      key_server => 'keyserver.ubuntu.com',
       before     => Package['cgi-mapserver', 'mapserver-bin', 'gdal-bin'],
     }
   }
