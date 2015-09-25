@@ -10,26 +10,28 @@
 # [*port*]      which this vhost should listen to
 # [*docroot*]   the directory which contains your map files and hosted content
 # [*extension*] of the map files, normally this will be .map
+# [*servername*] of the apache vhost
 #
 # === Authors
 # 
 # - Christopher Johnson - cjohn@ceh.ac.uk
 #
 define mapserver::vhost (
-  $port      = $mapserver::port,
-  $docroot   = $mapserver::docroot,
-  $extension = $mapserver::extension,
+  $port       = $mapserver::port,
+  $docroot    = $mapserver::docroot,
+  $extension  = $mapserver::extension,
+  $servername = $mapserver::servername,
 ) {
   # The base class must be included first because it is used by parameter defaults
   if ! defined(Class['mapserver']) {
     fail('You must include the mapserver base class before defining a vhost')
   }
-  
+
   include apache
   include apache::mod::fcgid
 
   apache::vhost { "mapserver-${name}":
-    servername      => $fqdn,
+    servername      => $servername,
     port            => $port,
     docroot         => ,
     scriptaliases   => [{
