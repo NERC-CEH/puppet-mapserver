@@ -40,7 +40,7 @@ define mapserver::vhost (
     }],
     rewrites        => [{
       rewrite_cond => "${docroot}/%{REQUEST_FILENAME}${extension} -f",
-      rewrite_rule => "^/(.*)$ /cgi-bin/mapserv?map=${docroot}/$1${extension} [QSA,L,NC,PT]"
+      rewrite_rule => "^/(.*)$ /cgi-bin/mapserv?map=${docroot}/\$1${extension} [QSA,L,NC,PT]"
     }],
     custom_fragment => 'SetHandler fcgid-script',
   }

@@ -32,8 +32,8 @@ describe 'mapserver::vhost', :type => :define do
     }],
     :rewrites        => [{
       :rewrite_cond => '/var/maps/%{REQUEST_FILENAME}.maps -f',
-      :rewrite_rule => "^/(.*)$ /cgi-bin/mapserv?map=/var/maps/$1.maps [QSA,L,NC,PT]"
+      :rewrite_rule => '^/(.*)$ /cgi-bin/mapserv?map=/var/maps/$1.maps [QSA,L,NC,PT]'
     }],
     :custom_fragment => 'SetHandler fcgid-script'
-  )}
+  ) }
 end
