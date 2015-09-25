@@ -17,15 +17,16 @@ describe 'mapserver::vhost', :type => :define do
 
   let(:params) {{
     :port       => '1234',
-    :docroot    => '/var/maps',
-    :extension  => '.maps',
+    :docroot    => '/var/html',
+    :maproot    => '/var/maps',
+    :extension  => 'maps',
     :servername => 'servername'
   }}
 
   it { should contain_apache__vhost('mapserver-name').with(
     :servername      => 'servername',
     :port            => '1234',
-    :docroot         => '/var/maps',
+    :docroot         => '/var/html',
     :scriptaliases   => [{
       :alias => '/cgi-bin',
       :path  => '/usr/lib/cgi-bin/'
@@ -34,6 +35,9 @@ describe 'mapserver::vhost', :type => :define do
       :rewrite_cond => '/var/maps/%{REQUEST_FILENAME}.maps -f',
       :rewrite_rule => '^/(.*)$ /cgi-bin/mapserv?map=/var/maps/$1.maps [QSA,L,NC,PT]'
     }],
-    :custom_fragment => 'SetHandler fcgid-script'
+    :directories     => [{
+      :path       => '/usr/lib/cgi-bin',
+      :sethandler => 'fcgid-script'
+    }]
   ) }
 end

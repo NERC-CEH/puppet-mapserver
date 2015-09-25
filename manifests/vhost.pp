@@ -9,7 +9,8 @@
 #
 # [*default_vhost*] if this vhost should be the default for the system
 # [*port*]          which this vhost should listen to
-# [*docroot*]       the directory which contains your map files and hosted content
+# [*docroot*]       the document root of the vhost
+# [*maproot*]       the directory which contains your map files and hosted content
 # [*extension*]     of the map files, normally this will be .map
 # [*servername*]    of the apache vhost
 #
@@ -21,6 +22,7 @@ define mapserver::vhost (
   $default_vhost = $mapserver::default_vhost,
   $port          = $mapserver::port,
   $docroot       = $mapserver::docroot,
+  $maproot       = $mapserver::maproot,
   $extension     = $mapserver::extension,
   $servername    = $mapserver::servername,
 ) {
@@ -34,6 +36,7 @@ define mapserver::vhost (
 
   apache::vhost { "mapserver-${name}":
     servername      => $servername,
+    default_vhost   => $default_vhost,
     port            => $port,
     docroot         => $docroot,
     scriptaliases   => [{
@@ -41,9 +44,12 @@ define mapserver::vhost (
       path  => '/usr/lib/cgi-bin/',
     }],
     rewrites        => [{
-      rewrite_cond => "${docroot}/%{REQUEST_FILENAME}${extension} -f",
-      rewrite_rule => "^/(.*)$ /cgi-bin/mapserv?map=${docroot}/\$1${extension} [QSA,L,NC,PT]"
+      rewrite_cond => "${maproot}/%{REQUEST_FILENAME}.${extension} -f",
+      rewrite_rule => "^/(.*)$ /cgi-bin/mapserv?map=${maproot}/\$1.${extension} [QSA,L,NC,PT]"
     }],
-    custom_fragment => 'SetHandler fcgid-script',
+    directories     => [{
+      path       => '/usr/lib/cgi-bin',
+      sethandler => 'fcgid-script',
+    }],
   }
 }

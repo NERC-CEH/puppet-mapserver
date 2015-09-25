@@ -4,7 +4,8 @@
 #
 # === Parameters
 # [*port*] The port number to run mapserver on
-# [*docroot*] the directory which contains your map files and hosted content
+# [*docroot*] the document root of the vhost
+# [*maproot*] the directory which contains your map files and hosted content
 # [*extension*] of the map files, normally this will be .map
 # [*default_vhost*] if mapserver should be the default for the system
 # [*servername*] of the apache vhost
@@ -23,7 +24,8 @@
 #
 class mapserver (
   $port                  = '9000',
-  $docroot               = '/var/www/mapserver',
+  $docroot               = '/var/www/html',
+  $maproot               = '/var/www/mapserver',
   $extension             = 'map',
   $default_vhost         = false,
   $servername            = $::fqdn,
