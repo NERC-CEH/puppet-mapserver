@@ -25,10 +25,10 @@ describe 'mapserver', :type => :define do
   it { should contain_apache__vhost('mapserver-name').with(
     :servername      => 'servername',
     :port            => '1234',
-    :docroot         => ,
+    :docroot         => '/var/maps',
     :scriptaliases   => [{
       :alias => '/cgi-bin',
-      :path  => '/usr/lib/cgi-bin/',
+      :path  => '/usr/lib/cgi-bin/'
     }],
     :rewrites        => [{
       :rewrite_cond => '/var/maps/%{REQUEST_FILENAME}.maps -f',
