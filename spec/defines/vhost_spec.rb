@@ -18,7 +18,7 @@ describe 'mapserver', :type => :define do
   let(:params) {{
     :port       => '1234',
     :docroot    => '/var/maps',
-    :extension  => '.maps'
+    :extension  => '.maps',
     :servername => 'servername'
   }}
 
