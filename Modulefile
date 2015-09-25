@@ -1,5 +1,5 @@
 name 'ceh-mapserver'
-version '1.2.2'
+version '1.2.3'
 source 'git://github.com/NERC-CEH/puppet-mapserver.git'
 author 'Centre for Ecology & Hydrology'
 license 'GPL-2.0'

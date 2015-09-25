@@ -1,6 +1,6 @@
 {
   "name": "ceh-mapserver",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "author": "Centre for Ecology & Hydrology",
   "license": "GPL-2.0",
   "summary": "Puppet module for managing mapserver",
