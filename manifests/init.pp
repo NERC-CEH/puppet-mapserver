@@ -4,6 +4,8 @@
 #
 # === Parameters
 # [*port*] The port number to run mapserver on
+# [*docroot*] the directory which contains your map files and hosted content
+# [*extension*] of the map files, normally this will be .map
 # [*gdal_version*] The version of the gdal suite to install
 # [*cgi_mapserver_version*] The version of the cig mapserver application to install
 # [*mapserver_bin_version*] The version of the mapserver bin to install
@@ -19,6 +21,8 @@
 #
 class mapserver (
   $port                  = '9000',
+  $docroot               = '/var/www/mapserver',
+  $extension             = 'map',
   $gdal_version          = present,
   $cgi_mapserver_version = present,
   $mapserver_bin_version = present,
@@ -26,19 +30,7 @@ class mapserver (
   $ubuntugis             = undef
 ) {
   if $manage_vhost {
-    include apache
-    include apache::mod::fcgid
-
-    apache::vhost { 'mapserver':
-      servername      => $fqdn,
-      port            => $port,
-      docroot         => '/var/www/mapserver',
-      scriptaliases   => [{
-        alias => '/cgi-bin',
-        path  => '/usr/lib/cgi-bin/',
-      }],
-      custom_fragment => 'SetHandler fcgid-script',
-    }
+    mapserver::vhost { 'default': }
   }
 
   if $ubuntugis {
