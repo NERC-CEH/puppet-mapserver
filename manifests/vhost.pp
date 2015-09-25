@@ -33,7 +33,7 @@ define mapserver::vhost (
   apache::vhost { "mapserver-${name}":
     servername      => $servername,
     port            => $port,
-    docroot         => ,
+    docroot         => $docroot,
     scriptaliases   => [{
       alias => '/cgi-bin',
       path  => '/usr/lib/cgi-bin/',
