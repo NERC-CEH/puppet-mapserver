@@ -7,20 +7,22 @@
 # In addition to hosting these map files the standard mapserver cgi will be 
 # exposed at /cgi-bin/mapserv
 #
-# [*port*]      which this vhost should listen to
-# [*docroot*]   the directory which contains your map files and hosted content
-# [*extension*] of the map files, normally this will be .map
-# [*servername*] of the apache vhost
+# [*default_vhost*] if this vhost should be the default for the system
+# [*port*]          which this vhost should listen to
+# [*docroot*]       the directory which contains your map files and hosted content
+# [*extension*]     of the map files, normally this will be .map
+# [*servername*]    of the apache vhost
 #
 # === Authors
 # 
 # - Christopher Johnson - cjohn@ceh.ac.uk
 #
 define mapserver::vhost (
-  $port       = $mapserver::port,
-  $docroot    = $mapserver::docroot,
-  $extension  = $mapserver::extension,
-  $servername = $mapserver::servername,
+  $default_vhost = $mapserver::default_vhost,
+  $port          = $mapserver::port,
+  $docroot       = $mapserver::docroot,
+  $extension     = $mapserver::extension,
+  $servername    = $mapserver::servername,
 ) {
   # The base class must be included first because it is used by parameter defaults
   if ! defined(Class['mapserver']) {

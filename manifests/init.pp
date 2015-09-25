@@ -6,6 +6,7 @@
 # [*port*] The port number to run mapserver on
 # [*docroot*] the directory which contains your map files and hosted content
 # [*extension*] of the map files, normally this will be .map
+# [*default_vhost*] if mapserver should be the default for the system
 # [*servername*] of the apache vhost
 # [*gdal_version*] The version of the gdal suite to install
 # [*cgi_mapserver_version*] The version of the cig mapserver application to install
@@ -24,6 +25,7 @@ class mapserver (
   $port                  = '9000',
   $docroot               = '/var/www/mapserver',
   $extension             = 'map',
+  $default_vhost         = false,
   $servername            = $::fqdn,
   $gdal_version          = present,
   $cgi_mapserver_version = present,
