@@ -20,12 +20,15 @@ describe 'mapserver', :type => :class do
 
     it { should contain_apache__vhost('mapserver-default').with(
       :port            => '7000',
-      :docroot         => '/var/www/mapserver',
+      :docroot         => '/var/www/html',
       :scriptaliases   => [{
         :alias => '/cgi-bin',
         :path  => '/usr/lib/cgi-bin/'
       }],
-      :custom_fragment => 'SetHandler fcgid-script'
+      :directories     => [{
+        :path       => '/usr/lib/cgi-bin',
+        :sethandler => 'fcgid-script'
+      }]
     ) }
   end
 
