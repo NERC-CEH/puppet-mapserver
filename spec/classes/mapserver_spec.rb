@@ -45,7 +45,7 @@ describe 'mapserver', :type => :class do
     it { should contain_apt__source('ubuntugis-ppa').with(
       :location   => 'http://ppa.launchpad.net/ubuntugis/ppa/ubuntu',
       :repos      => 'main',
-      :key        => '314DF160',
+      :key        => '6B827C12C2D425E227EDCA75089EBE08314DF160',
       :key_server => 'keyserver.ubuntu.com'
     )}
   end
@@ -58,7 +58,7 @@ describe 'mapserver', :type => :class do
     it { should contain_apt__source('ubuntugis-ppa').with(
       :location   => 'http://ppa.launchpad.net/ubuntugis/ubuntugis-unstable/ubuntu',
       :repos      => 'main',
-      :key        => '314DF160',
+      :key        => '6B827C12C2D425E227EDCA75089EBE08314DF160',
       :key_server => 'keyserver.ubuntu.com'
     )}
   end
